@@ -5,6 +5,7 @@
 # the SWIG interface file instead.
 
 from sys import version_info as _swig_python_version_info
+
 if _swig_python_version_info < (2, 7, 0):
     raise RuntimeError("Python 2.7 or later required")
 
@@ -14,10 +15,12 @@ if __package__ or "." in __name__:
 else:
     import _pafprocess
 
-try:
-    import builtins as __builtin__
-except ImportError:
-    import __builtin__
+# try:
+#     import builtins as __builtin__
+# except ImportError:
+#     import __builtin__
+import builtins as __builtin__
+
 
 def _swig_repr(self):
     try:
@@ -37,6 +40,7 @@ def _swig_setattr_nondynamic_instance_variable(set):
             set(self, name, value)
         else:
             raise AttributeError("You cannot add instance attributes to %s" % self)
+
     return set_instance_attr
 
 
@@ -46,13 +50,16 @@ def _swig_setattr_nondynamic_class_variable(set):
             set(cls, name, value)
         else:
             raise AttributeError("You cannot add class attributes to %s" % cls)
+
     return set_class_attr
 
 
 def _swig_add_metaclass(metaclass):
     """Class decorator for adding a metaclass to a SWIG wrapped class - a slimmed down version of six.add_metaclass"""
+
     def wrapper(cls):
         return metaclass(cls.__name__, cls.__bases__, cls.__dict__.copy())
+
     return wrapper
 
 
@@ -71,7 +78,9 @@ class Peak(object):
 
     def __init__(self):
         _pafprocess.Peak_swiginit(self, _pafprocess.new_Peak())
+
     __swig_destroy__ = _pafprocess.delete_Peak
+
 
 # Register Peak in _pafprocess:
 _pafprocess.Peak_swigregister(Peak)
@@ -87,6 +96,7 @@ COCOPAIRS_SIZE = cvar.COCOPAIRS_SIZE
 COCOPAIRS_NET = cvar.COCOPAIRS_NET
 COCOPAIRS = cvar.COCOPAIRS
 
+
 class VectorXY(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -95,10 +105,13 @@ class VectorXY(object):
 
     def __init__(self):
         _pafprocess.VectorXY_swiginit(self, _pafprocess.new_VectorXY())
+
     __swig_destroy__ = _pafprocess.delete_VectorXY
+
 
 # Register VectorXY in _pafprocess:
 _pafprocess.VectorXY_swigregister(VectorXY)
+
 
 class ConnectionCandidate(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -110,10 +123,13 @@ class ConnectionCandidate(object):
 
     def __init__(self):
         _pafprocess.ConnectionCandidate_swiginit(self, _pafprocess.new_ConnectionCandidate())
+
     __swig_destroy__ = _pafprocess.delete_ConnectionCandidate
+
 
 # Register ConnectionCandidate in _pafprocess:
 _pafprocess.ConnectionCandidate_swigregister(ConnectionCandidate)
+
 
 class Connection(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -126,7 +142,9 @@ class Connection(object):
 
     def __init__(self):
         _pafprocess.Connection_swiginit(self, _pafprocess.new_Connection())
+
     __swig_destroy__ = _pafprocess.delete_Connection
+
 
 # Register Connection in _pafprocess:
 _pafprocess.Connection_swigregister(Connection)
@@ -135,22 +153,26 @@ _pafprocess.Connection_swigregister(Connection)
 def process_paf(p1, h1, f1):
     return _pafprocess.process_paf(p1, h1, f1)
 
+
 def get_num_humans():
     return _pafprocess.get_num_humans()
+
 
 def get_part_cid(human_id, part_id):
     return _pafprocess.get_part_cid(human_id, part_id)
 
+
 def get_score(human_id):
     return _pafprocess.get_score(human_id)
+
 
 def get_part_x(cid):
     return _pafprocess.get_part_x(cid)
 
+
 def get_part_y(cid):
     return _pafprocess.get_part_y(cid)
 
+
 def get_part_score(cid):
     return _pafprocess.get_part_score(cid)
-
-

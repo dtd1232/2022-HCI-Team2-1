@@ -3,6 +3,7 @@ psutil
 pycocotools
 requests
 scipy
+scikit-learn
 tqdm
 opencv-python-headless
 # git+https://github.com/ppwwyyxx/tensorpack.git
