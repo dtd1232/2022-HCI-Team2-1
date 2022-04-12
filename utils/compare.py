@@ -198,7 +198,7 @@ def compare_positions(trainer_video, keyp_list, dim=(420, 720)):
 if __name__ == '__main__':
     resize = '1280x720'  # resize images before they are processed
     resize_out_ratio = 4.0  # resize heatmaps before they are post-processed
-    model = 'cmu'
+    model = 'mobilenet_thin'
     show_process = False
     tensorrt = False
 
@@ -209,9 +209,9 @@ if __name__ == '__main__':
         e = TfPoseEstimator(get_graph_path(model), target_size=(432, 368), trt_bool=False)
 
     video_path = '/Users/juhohong/Downloads/workout_short.mp4'
-    # data, keyp_list = get_position(video_path=video_path)
+    data, keyp_list = get_position(video_path=video_path)
     # data.head()
     #
     # compare_positions(video_path, keyp_list)
 
-    process_video(video_path)
+    # process_video(video_path)
