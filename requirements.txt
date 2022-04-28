@@ -1,3 +1,5 @@
+Django==4.0.4
+django-bootstrap-v5
 matplotlib
 psutil
 pycocotools
