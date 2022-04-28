@@ -3,7 +3,7 @@ import logging
 import time
 
 import cv2
-
+import tkinter as tk
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
 
@@ -26,12 +26,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='tf-pose-estimation realtime webcam')
     parser.add_argument('--camera', type=int, default=0)
 
-    parser.add_argument('--resize', type=str, default='160x160',
+    parser.add_argument('--resize', type=str, default='432x368',
                         help='if provided, resize images before they are processed. default=0x0, Recommends : 432x368 or 656x368 or 1312x736 ')
     parser.add_argument('--resize-out-ratio', type=float, default=4.0,
                         help='if provided, resize heatmaps before they are post-processed. default=1.0')
 
-    parser.add_argument('--model', type=str, default='cmu',
+    parser.add_argument('--model', type=str, default='mobilenet_v2_small',
                         help='cmu / mobilenet_thin / mobilenet_v2_large / mobilenet_v2_small')
     parser.add_argument('--show-process', type=bool, default=False,
                         help='for debug purpose, if enabled, speed for inference is dropped.')
@@ -50,7 +50,8 @@ if __name__ == '__main__':
     cam = cv2.VideoCapture(args.camera)
     ret_val, image = cam.read()
     logger.info('cam image=%dx%d' % (image.shape[1], image.shape[0]))
-
+    window = tk.Tk()
+    window.mainloop()
     while True:
         ret_val, image = cam.read()
 
