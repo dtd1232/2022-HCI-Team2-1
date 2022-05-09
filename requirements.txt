@@ -1,11 +1,12 @@
-Django==4.0.4
-django-bootstrap-v5
-matplotlib
-psutil
-pycocotools
-requests
-scipy
-scikit-learn
-tqdm
-opencv-python-headless
-# git+https://github.com/ppwwyyxx/tensorpack.git
+django==4.0.4
+django-bootstrap4
+matplotlib==3.5.2
+psutil==5.9.0
+pycocotools==2.0.4
+requests==2.27.1
+scipy==1.8.0
+scikit-learn==1.0.2
+tqdm==4.64.0
+opencv-python-headless==4.5.5.64
+psycopg2-binary==2.9.3
+# tensorflow

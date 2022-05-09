@@ -16,3 +16,14 @@ def webcam_feed(request):
 
 class Home(TemplateView):
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['user'] = self.request.user
+
+        return context
+
+
+class Login(TemplateView):
+    template_name = 'login.html'

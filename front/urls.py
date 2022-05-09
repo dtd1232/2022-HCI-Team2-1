@@ -5,6 +5,7 @@ import front
 from front import views
 
 urlpatterns = [
+    path('login/', views.Login.as_view()),
     path('', views.Home.as_view()),
     path('webcam/', views.webcam_feed)
 ]
