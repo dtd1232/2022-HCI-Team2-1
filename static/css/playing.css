@@ -1,0 +1,37 @@
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: black;
+    height: 100vh;
+    display : flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 100%;
+}
+
+#stopwatch {
+    margin: 10px;
+    position: absolute;
+}
+
+#stopwatchContent {
+    color: black;
+}
+
+video {
+    width: 100%;
+}
+
+#cameraContent {
+    width: 100%;
+    border-radius: 5px;
+    border: 5px solid greenyellow;
+}
+
+button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
