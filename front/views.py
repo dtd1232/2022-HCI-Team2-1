@@ -28,5 +28,10 @@ class Home(TemplateView):
 class Login(TemplateView):
     template_name = 'login.html'
 
+
 class Playing(TemplateView):
     template_name = 'playing.html'
+
+
+class Selection(TemplateView):
+    template_name = 'selection.html'

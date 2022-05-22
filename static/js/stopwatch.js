@@ -2,6 +2,7 @@ let timerId;
 let time = 0;
 const stopwatch = document.getElementById("stopwatch");
 let  hour, min, sec;
+let score;
 
 
 function printTime() {
@@ -14,6 +15,25 @@ function startClock() {
     printTime();
     stopClock();
     timerId = setTimeout(startClock, 1000);
+    score = Math.random() * 100;
+    console.log(score)
+    var obj = document.getElementById("cameraContent");
+    var obj2 = document.getElementById("current_status")
+    if(score > 80) {
+        obj.style.border = "10px solid greenyellow";
+        obj2.style.color = "greenyellow";
+        obj2.innerHTML = "Perfect!"
+    }
+    else if(score > 60) {
+        obj.style.border = "10px solid darkorange";
+        obj2.style.color = "darkorange";
+        obj2.innerHTML = "Good"
+    }
+    else {
+        obj.style.border = "10px solid red";
+        obj2.style.color = "red";
+        obj2.innerHTML = "Bad..."
+    }
 }
 
 //시계 중지
