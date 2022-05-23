@@ -26,7 +26,11 @@ class Home(TemplateView):
 
 
 class Login(TemplateView):
-    template_name = 'login.html'
+    template_name = 'account/login.html'
+
+
+class Register(TemplateView):
+    template_name = 'account/register.html'
 
 
 class Playing(TemplateView):
