@@ -1,48 +1,34 @@
-body {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-color: black;
-    height: 100vh;
-    display : flex;
-    align-items: center;
-}
-
-.container {
-    max-width: 100%;
-}
-
-#stopwatch {
-    margin: 10px;
-    position: absolute;
-}
-
-#stopwatchContent {
-    color: black;
-}
-
-video {
+#stats {
+    position: relative;
     width: 100%;
+    height: 80px;
 }
 
-#cameraContent {
-    width: 100%;
-    border-radius: 5px;
-    border: 10px solid greenyellow;
+#main {
+    position: relative;
+    margin: 0;
 }
 
-button {
+#canvas-wrapper,
+#scatter-gl-container {
+    position: relative;
+}
+
+#gui, #stats {
+    display: none;
+!important;
+}
+
+#instructor-video, #instructor-input {
     position: absolute;
-    right: 10px;
-    top: -50px;
+    z-index: 1;
+!important;
 }
 
-#current_status {
+#input-video {
     position: absolute;
-    right: 45%;
-    top: 10px;
-    color: greenyellow;
-}
-
-h1 {
-    font-weight: bolder;
+    top: 35%;
+    right: 10%;
+    z-index: 2;
+!important;
 }

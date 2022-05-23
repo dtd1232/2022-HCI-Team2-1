@@ -11,6 +11,8 @@
   <meta name="author" content="">
 
   <title>HCI</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -21,10 +23,13 @@
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+  {% block extrastyles %}
+  {% endblock %}
 </head>
 
 <body id="page-top">
 <div id="wrapper">
+{% block content-outer %}
   {% include 'partials/nav.html' %}
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
@@ -32,6 +37,7 @@
       {% endblock %}
     </div>
   </div>
+{% endblock %}
 </div>
 </body>
 </html>
