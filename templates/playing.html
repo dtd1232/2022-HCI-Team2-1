@@ -5,20 +5,21 @@
   <link href="{% static 'css/playing.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content-outer %}
-  {#  <body onload="startClock()">#}
+  {#    <body onload="startClock()">#}
   <div class="justify-content-center py-5 px-5">
     <div class="d-flex justify-content-between">
       <span></span>
       <div>
         <button id="submit" type="button" class="btn btn-success">Start Exercise</button>
         <button type="button" class="btn btn-danger">Finish Exercise</button>
+        <h2 id="score-display"></h2>
       </div>
     </div>
 
     <div id="instructor-video" class="justify-content-center">
       <canvas id="instructor-input"></canvas>
       <video id="video-input">
-        <source id="currentVID" src="{% static 'assets/input.mp4' %}" type="video/mp4">
+        <source id="currentVID" src="{{ object.source.url }}" type="video/mp4">
       </video>
       <span id="status"></span>
       <div id="stats"></div>
@@ -40,11 +41,18 @@
     </div>
   </div>
 
-{#  <script> document.getElementById('source').play(); </script>#}
+  {#  <script> document.getElementById('source').play(); </script>#}
   <script src="{% static 'js/stopwatch.js' %}" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
   <script src="{% static 'js/tfjs/src.a2b27638.js' %}" type="text/javascript"></script>
   <script src="{% static 'js/tfjs/src.a2b27638.js.map' %}" type="text/javascript"></script>
 
+  <script>
+
+
+      function scoreBorder() {
+          document.getElementById('input-video').style.border = '3px solid red';
+      }
+  </script>
 {% endblock %}

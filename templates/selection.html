@@ -1,12 +1,17 @@
-{% block content %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% load static statistics %}
 
-<head>
+{% block content %}
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
     <!-- 모바일에서 화면배율을 디바이스 크기 기준으로 설정 -->
     <!-- 이게 안되면 pc에서의 100px과 모바일에서의 100px이 디바이스 성능에 따라 달라집니다. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- 제이쿼리 불러오기 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,116 +26,48 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- 폰트어썸 불러오기 -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="{% static 'css/selection.css' %}" rel="stylesheet">
-</head>
-<body>
-    <!-- 중앙 컨텐츠 3차 visual story -->
-    <div id="top" class="v-story-wrap con">
-        <h2 class="v-story-tt" data-aos="fade-up">Program Selection</h2>
-        <div class="v-story-slider" data-aos="fade-up">
-            <div class="slider-item">
-                <a href="../playing" class="block">
-                    <div class="img-box block">
-                        <img src="{% static 'img/list_demo1.png' %}" alt="">
-                    </div>
-                    <div class="discover">
-                        <span class="discover-btn block">Start</span>
-                        <span class="discover-txt block">Let's Play!</span>
-                    </div>
-                </a>
-                <div class="v-story-desc-list">
-                    <p class="v-story-desc">Pilates</p>
-                    <p class="v-story-desc-tt">category : Exercise</p>
-                    <p class="v-story-desc-tt">play count : 11</p>
-                    <p class="v-story-desc-tt">last score : 95</p>
-                    <p class="v-story-desc-tt">best score : 95</p>
-                    <div class='RatingStar'>
-                        <div class='RatingScore'>
-                            <div class='outer-star'>
-                                <div class='inner-star'></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-item">
-                <a href="../playing" class="block">
-                    <div class="img-box">
-                        <img src="{% static 'img/list_demo2.png' %}" alt="">
-                    </div>
-                    <div class="discover">
-                        <span class="discover-btn block">Start</span>
-                        <span class="discover-txt block">Let's Play!</span>
-                    </div>
-                </a>
-                <div class="v-story-desc-list">
-                    <p class="v-story-desc">Running Exercise</p>
-                    <p class="v-story-desc-tt">category : Exercise</p>
-                    <p class="v-story-desc-tt">play count : 5</p>
-                    <p class="v-story-desc-tt">last score : 65</p>
-                    <p class="v-story-desc-tt">best score : 87</p>
-                    <div class='RatingStar'>
-                        <div class='RatingScore'>
-                            <div class='outer-star'>
-                                <div class='inner-star'></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-item">
-                <a href="../playing" class="block">
-                    <div class="img-box">
-                        <img src="{% static 'img/list_demo3.jpeg' %}" alt="">
-                    </div>
-                    <div class="discover">
-                        <span class="discover-btn block">Start</span>
-                        <span class="discover-txt block">Let's Play!</span>
-                    </div>
-                </a>
-                <div class="v-story-desc-list">
-                    <p class="v-story-desc">Next Level</p>
-                    <p class="v-story-desc-tt">category : Dance</p>
-                    <p class="v-story-desc-tt">play count : 15</p>
-                    <p class="v-story-desc-tt">last score : 55</p>
-                    <p class="v-story-desc-tt">best score : 76</p>
-                    <div class='RatingStar'>
-                        <div class='RatingScore'>
-                            <div class='outer-star'>
-                                <div class='inner-star'></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </head>
+  <body
+    style="background-image: url('{% static "img/background.png" %}');  background-repeat: no-repeat;  background-attachment: fixed;
+      background-size: 100% 100%;">
+  <!-- 중앙 컨텐츠 3차 visual story -->
+  <div id="top" class="v-story-wrap con">
+    <div class="d-flex justify-content-between px-5">
+      <span></span>
+      <a class="btn btn-outline-light mt-3" href="{% url 'logout' %}">Logout</a>
     </div>
-</body>
-<script src="{% static 'js/selection.js' %}"></script>
-<script>
-    ratings = {
-        RatingScore: 4.5
-    }
-    totalRating = 5;
-    table = document.querySelector('.RatingStar');
+    <div class="v-story-slider mt-5" data-aos="fade-up">
+      {% for object in object_list %}
+        <div class="slider-item">
+          <a href="{% url 'play' object.pk %}" class="block">
+            <div class="img-box block">
+              <img src="{{ object.preview.url }}" height="100%" width="1920" alt="" style="border-radius: 12px;">
+            </div>
+            <div class="discover">
+              <span class="block text-white">Start</span>
+              <span class="block text-white">Let's Play!</span>
+            </div>
+          </a>
+          <div class="v-story-desc-list">
+            {% for star in object.get_star_list %}
+              <i class="fas fa-star" style="color: gold"></i>
+            {% endfor %}
+            <p class="v-story-desc mt-2">{{ object.name }}</p>
+            <p class="v-story-desc-tt">Category : {{ object.get_category_display }}</p>
+            <p class="v-story-desc-tt">
+              Play count: {{ object|get_play_count:user }} |
+              Last score: {{ object|get_last_score:user }} |
+              Best score: {{ object|get_best_score:user }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
 
-    function rateIt(ratings) {
-        let ratingPercentage;
-        let rating
-        let ratingRounded;
-        let star;
-        let numberRating;
-        for (rating in ratings) {
-            ratingPercentage = ratings[rating] / totalRating * 100;
-            ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
-            star = table.querySelector(`.${rating} .inner-star`);
-            numberRating = table.querySelector(`.${rating} .numberRating`);
-            star.style.width = ratingRounded;
-            numberRating.innerText = ratings[rating];
-        }
-    }
-
-    rateIt(ratings);
-</script>
+    </div>
+  </div>
+  </body>
+  <script src="{% static 'js/selection.js' %}"></script>
 {% endblock %}

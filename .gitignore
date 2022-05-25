@@ -1,3 +1,6 @@
 *.pb
 *.sqlite3
 .idea
+
+resources
+media

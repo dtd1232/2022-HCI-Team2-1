@@ -1,13 +1,13 @@
-from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
 
-import front
 from front import views
+from front.views import *
 
 urlpatterns = [
-    path('login/', views.Login.as_view()),
-    path('playing/', views.Playing.as_view()),
-    path('selection/', views.Selection.as_view()),
-    path('', views.Home.as_view()),
-    path('webcam/', views.webcam_feed)
+    path('accounts/login/', LoginView.as_view(template_name='account/login.html'), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/register/', Register.as_view(), name='register'),
+    path('play/<int:pk>/', views.Play.as_view(), name='play'),
+    path('', views.Selection.as_view()),
 ]
