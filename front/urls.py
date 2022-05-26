@@ -9,5 +9,6 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('accounts/register/', Register.as_view(), name='register'),
     path('play/<int:pk>/', views.Play.as_view(), name='play'),
+    path('result/<int:pk>/', views.ResultView.as_view(), name='result'),
     path('', views.Selection.as_view()),
 ]

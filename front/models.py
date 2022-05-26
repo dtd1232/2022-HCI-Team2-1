@@ -21,7 +21,7 @@ class Exercise(models.Model):
     category = models.CharField('Category', choices=CATEGORY_CHOICES, max_length=20)
     preview = models.ImageField('Preview Image', upload_to=FilenameChanger('media/preview/'), null=True)
     # play_count = models.PositiveIntegerField('Play count')
-    source = models.FileField('File')
+    source = models.FileField('File', upload_to=FilenameChanger('media/sources/'))
     difficulty = models.CharField('Difficulty', choices=DIFFICULTY_CHOICES, max_length=10)
     star_count = models.PositiveIntegerField('Star count', blank=True)
 
@@ -37,7 +37,6 @@ class Exercise(models.Model):
 
     def get_star_list(self):
         return [i for i in range(0, self.star_count)]
-
 
 
 class ExerciseHistory(models.Model):
@@ -57,6 +56,10 @@ class ExerciseHistory(models.Model):
     start = models.DateTimeField('Start', auto_now_add=True)
     end = models.DateTimeField('End', null=True)
 
+    class Meta:
+        verbose_name_plural = 'Exercise Histories'
+        ordering = ['-id']
+
 
 class Score(models.Model):
     exercise_history = models.ForeignKey(
@@ -67,3 +70,6 @@ class Score(models.Model):
     )
     score = models.PositiveIntegerField('Score')
     created = models.DateTimeField('Created', auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']

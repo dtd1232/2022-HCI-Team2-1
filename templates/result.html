@@ -1,0 +1,77 @@
+{% load static humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body
+  style="background-image: url('{% static "img/background.png" %}');  background-repeat: no-repeat;  background-attachment: fixed;
+    background-size: 100% 100%;">
+<div>
+  <h1 class="text-center text-white" style="margin-top: 130px">{{ result_message }}</h1>
+  <div class="d-flex justify-content-between">
+    <div class="col-sm-4">
+      <canvas class="py-5 px-5" id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div class="col-sm-6" style="margin-top: 40px">
+      <table class="table table-borderless text-white">
+        <thead>
+        <tr>
+          <th>Results</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><i class="fa-solid fa-square" style="color: #32FFFFFF;"></i>&nbsp;&nbsp;&nbsp;Perfect: {{ percentages.2 }}%</td>
+        </tr>
+        <tr>
+          <td><i class="fa-solid fa-square" style="color: #32FF56FF;"></i>&nbsp;&nbsp;&nbsp;Good: {{ percentages.1 }}%</td>
+        </tr>
+        <tr>
+          <td><i class="fa-solid fa-square" style="color: #FF0064FF;"></i>&nbsp;&nbsp;&nbsp;Bad: {{ percentages.0 }}%</td>
+        </tr>
+        <tr>
+          <td>
+            Exercise Time: {{ time_exercise }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Bad', 'Good', 'Perfect'],
+            datasets: [{
+                data: {{ percentages }},
+                backgroundColor: [
+                    'rgba(255, 0, 100, 1)',
+                    'rgba(50, 255, 86, 1)',
+                    'rgba(50, 255, 255, 1)',
+                ],
+                borderColor: [
+                    'rgba(255, 0, 100, 1)',
+                    'rgba(50, 255, 86, 1)',
+                    'rgba(50, 255, 255, 1)',
+                ],
+            }]
+        }
+    });
+</script>
+
+</body>
+
+</html>`

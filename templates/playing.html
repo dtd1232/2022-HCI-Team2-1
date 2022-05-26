@@ -5,16 +5,14 @@
   <link href="{% static 'css/playing.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content-outer %}
-  {#    <body onload="startClock()">#}
-  <div class="justify-content-center py-5 px-5">
-    <div class="d-flex justify-content-between">
-      <span></span>
-      <div>
-        <button id="submit" type="button" class="btn btn-success">Start Exercise</button>
-        <button type="button" class="btn btn-danger">Finish Exercise</button>
-        <h2 id="score-display"></h2>
-      </div>
-    </div>
+  <form type="POST">
+    {% csrf_token %}
+  </form>
+  <div class="py-2 px-5">
+    <button id="submit" type="button" class="btn btn-success">Start Exercise</button>
+    <a type="button" class="btn btn-danger" href="{% url 'result' object.pk %}">Finish Exercise</a>
+    <h2 id="score-display"></h2>
+    <span id="score" style="display: none"></span>
 
     <div id="instructor-video" class="justify-content-center">
       <canvas id="instructor-input"></canvas>
@@ -47,12 +45,43 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
   <script src="{% static 'js/tfjs/src.a2b27638.js' %}" type="text/javascript"></script>
   <script src="{% static 'js/tfjs/src.a2b27638.js.map' %}" type="text/javascript"></script>
+  <script src="{% static 'js/jquery.cookie.js' %}"></script>
 
   <script>
+      var csrftoken = $.cookie('csrftoken');
 
-
-      function scoreBorder() {
-          document.getElementById('input-video').style.border = '3px solid red';
+      function csrfSafeMethod(method) {
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
       }
+
+      function postData() {
+          var params = {
+              'exercise_history': {{ exercise_history.id }},
+              'score': parseInt(document.getElementById('score').textContent)
+          };
+
+          $.ajaxSetup({
+              beforeSend: function (xhr, settings) {
+                  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                  }
+              }
+          });
+          $.ajax({
+              type: 'POST',
+              headers: '',
+              url: 'http://127.0.0.1:8101/api/scores/',
+              data: params,
+              success: function (response) {
+                  {#console.log(response);#}
+              },
+              error: function (response) {
+                  {#console.log(response.data);#}
+                  {#alert(response.body)#}
+              }
+          })
+      }
+
+      setInterval(postData, 5000);
   </script>
 {% endblock %}
